@@ -1,0 +1,16 @@
+package com.mhss.app.mynews.util
+
+object Constants {
+
+    const val ARTICLE_TYPE_GENERAL = "general"
+    const val ARTICLE_TYPE_ENTERTAINMENT = "entertainment"
+    const val ARTICLE_TYPE_TECH = "technology"
+    const val ARTICLE_TYPE_SPORTS = "sports"
+    const val ARTICLE_TYPE_HEALTH = "health"
+    const val ARTICLE_TYPE_BUSINESS = "business"
+    const val ARTICLE_TYPE_SCIENCE = "science"
+
+    const val DB_NAME = "articles_database"
+
+    const val BASE_URL = "https://newsapi.org/v2/"
+}
