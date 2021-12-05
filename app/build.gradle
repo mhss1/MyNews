@@ -45,6 +45,7 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     def work_version = "2.7.1"
     def room_version = "2.3.0"
     def lifecycle_version = "2.4.0"

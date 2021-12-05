@@ -6,8 +6,11 @@ import com.mhss.app.mynews.data.database.toArticles
 import com.mhss.app.mynews.data.network.NewsApi
 import com.mhss.app.mynews.domain.Article
 import com.mhss.app.mynews.util.Constants
+import com.mhss.app.mynews.util.DataState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.*
+import java.io.IOException
 import javax.inject.Inject
 
 class ArticlesRepository @Inject constructor(
@@ -38,9 +41,16 @@ class ArticlesRepository @Inject constructor(
         it.toArticles()
     }
 
-    suspend fun getArticles(query: String) : List<Article> {
+    fun getArticles(query: String) : Flow<DataState<List<Article>>> = flow {
+            emit(DataState.Loading)
+        try{
             val articlesResponse = newsApi.getArticles(query)
-            return articlesResponse.toArticles()
+            emit(DataState.Success(articlesResponse.toArticles()))
+        }catch (io: IOException){
+            emit(DataState.Error("Couldn't get results. Check your internet connection an try again"))
+        }catch (e: Exception){
+            emit(DataState.Error("Unknown Error has happened"))
+        }
     }
 
     suspend fun refreshArticles(){
