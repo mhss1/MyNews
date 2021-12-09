@@ -12,13 +12,19 @@
         <action
             android:id="@+id/mainFragment_to_detailsFragment"
             app:destination="@id/detailsFragment"
-            />
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
 
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.mhss.app.mynews.ui.fragments.ArticleDetailsFragment"
         tools:layout="@layout/fragment_article_details">
+        <argument
+            android:name="article"
+            app:argType="com.mhss.app.mynews.domain.Article" />
     </fragment>
 
     <fragment
@@ -38,7 +44,11 @@
         tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/searchFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
     </fragment>
 
         <fragment

@@ -49,41 +49,37 @@ class ArticlesRepository @Inject constructor(
         }catch (io: IOException){
             emit(DataState.Error("Couldn't get results. Check your internet connection an try again"))
         }catch (e: Exception){
-            emit(DataState.Error("Unknown Error has happened"))
+            emit(DataState.Error("Unexpected Error has happened"))
         }
     }
 
     suspend fun refreshArticles(){
         withContext(Dispatchers.IO) {
             val generalArticles = newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_GENERAL)
+            val sportsArticles = newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_SPORTS)
+            val techArticles = newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_TECH)
+            val healthArticles = newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_HEALTH)
+            val entertainmentArticles = newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_ENTERTAINMENT)
+            val scienceArticles = newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_SCIENCE)
+            val businessArticles = newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_BUSINESS)
+
+            articlesDao.clearCache()
+
             articlesDao.insertArticles(generalArticles.toDatabaseArticles()
                 .onEach { it.category = Constants.ARTICLE_TYPE_GENERAL })
-
-            val sportsArticles = newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_SPORTS)
             articlesDao.insertArticles(sportsArticles.toDatabaseArticles()
                 .onEach { it.category = Constants.ARTICLE_TYPE_SPORTS })
-
-            val techArticles = newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_TECH)
             articlesDao.insertArticles(techArticles.toDatabaseArticles()
                 .onEach { it.category = Constants.ARTICLE_TYPE_TECH })
-
-            val healthArticles = newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_HEALTH)
             articlesDao.insertArticles(healthArticles.toDatabaseArticles()
                 .onEach { it.category = Constants.ARTICLE_TYPE_HEALTH })
-
-            val entertainmentArticles =
-                newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_ENTERTAINMENT)
             articlesDao.insertArticles(entertainmentArticles.toDatabaseArticles()
                 .onEach { it.category = Constants.ARTICLE_TYPE_ENTERTAINMENT })
-
-            val scienceArticles = newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_SCIENCE)
             articlesDao.insertArticles(scienceArticles.toDatabaseArticles()
                 .onEach { it.category = Constants.ARTICLE_TYPE_SCIENCE })
-
-            val businessArticles =
-                newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_BUSINESS)
             articlesDao.insertArticles(businessArticles.toDatabaseArticles()
                 .onEach { it.category = Constants.ARTICLE_TYPE_BUSINESS })
+
         }
     }
 }

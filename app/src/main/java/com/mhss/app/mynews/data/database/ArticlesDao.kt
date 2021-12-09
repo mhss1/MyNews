@@ -13,6 +13,9 @@ interface ArticlesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertArticles(articles: List<DatabaseArticle>)
 
+    @Query("DELETE FROM articles_table")
+    suspend fun clearCache()
+
     @Query("SELECT * FROM articles_table WHERE category = :category ORDER BY publishedAt DESC")
     fun getGeneralArticles(category: String = Constants.ARTICLE_TYPE_GENERAL): LiveData<List<DatabaseArticle>>
 

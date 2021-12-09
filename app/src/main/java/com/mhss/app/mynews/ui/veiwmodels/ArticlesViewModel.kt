@@ -1,14 +1,14 @@
 package com.mhss.app.mynews.ui.veiwmodels
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import com.mhss.app.mynews.data.repository.ArticlesRepository
 import com.mhss.app.mynews.domain.Article
+import com.mhss.app.mynews.util.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import java.io.IOException
 import javax.inject.Inject
 
 
@@ -16,6 +16,10 @@ import javax.inject.Inject
 class ArticlesViewModel @Inject constructor(
     private val articlesRepository: ArticlesRepository
 ) : ViewModel() {
+
+    private val _refreshState = MutableLiveData<DataState<Nothing?>>()
+    val refreshState: LiveData<DataState<Nothing?>>
+        get() = _refreshState
 
     val generalArticles = articlesRepository.generalArticles
     val techArticles = articlesRepository.techArticles
@@ -31,6 +35,15 @@ class ArticlesViewModel @Inject constructor(
             .asLiveData()
 
     fun refreshArticles() = viewModelScope.launch {
-        articlesRepository.refreshArticles()
+        try {
+            _refreshState.value = DataState.Loading
+            articlesRepository.refreshArticles()
+            _refreshState.value = DataState.Success(null)
+        }catch (io: IOException){
+            _refreshState.value = DataState.Error("Couldn't refresh. Check your internet connection an try again")
+        }catch (e: Exception){
+            _refreshState.value = DataState.Error("Couldn't refresh. Unexpected Error has happened.")
+        }
+
     }
 }

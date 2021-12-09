@@ -10,8 +10,9 @@
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/color_primary</item>
-        <item name="android:navigationBarColor">@color/color_primary</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?android:colorBackground</item>
+        <item name="android:navigationBarColor">@color/nav_bar_color</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

@@ -10,7 +10,7 @@ data class Article(
     val title: String,
     val author: String,
     val content: String,
-    private val publishedAt: String,
+    val publishedAt: String,
     val source: String,
     val url: String,
     val imageUrl: String

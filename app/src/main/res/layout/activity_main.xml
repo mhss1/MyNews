@@ -28,7 +28,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:menu="@menu/bottom_menu"
         style="@style/Widget.MaterialComponents.BottomNavigationView"
-        android:background="@color/color_primary"
+        android:background="@color/nav_bar_color"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
