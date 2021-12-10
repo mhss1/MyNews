@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:padding="8dp"
-            android:textColor="@color/text_color"
+            android:textColor="@color/colorOnBackground"
             android:textSize="24sp"
             app:layout_constraintTop_toBottomOf="@id/article_img"
             tools:text="This is a test Title" />
@@ -54,7 +54,7 @@
 
         <TextView
             android:id="@+id/article_content_tv"
-            android:textColor="@color/text_color"
+            android:textColor="@color/colorOnBackground"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"

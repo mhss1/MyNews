@@ -7,9 +7,10 @@ import com.mhss.app.mynews.data.network.NewsApi
 import com.mhss.app.mynews.domain.Article
 import com.mhss.app.mynews.util.Constants
 import com.mhss.app.mynews.util.DataState
+import com.mhss.app.mynews.util.countryToCode
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.flow
 import java.io.IOException
 import javax.inject.Inject
 
@@ -41,11 +42,15 @@ class ArticlesRepository @Inject constructor(
         it.toArticles()
     }
 
-    fun getArticles(query: String) : Flow<DataState<List<Article>>> = flow {
-            emit(DataState.Loading)
+    fun getArticles(query: String, language: String) = flow {
         try{
-            val articlesResponse = newsApi.getArticles(query)
-            emit(DataState.Success(articlesResponse.toArticles()))
+            if (query.isBlank())
+                emit(DataState.Success(emptyList()))
+            else {
+                emit(DataState.Loading)
+                val articlesResponse = newsApi.getArticles(query, language)
+                emit(DataState.Success(articlesResponse.toArticles()))
+            }
         }catch (io: IOException){
             emit(DataState.Error("Couldn't get results. Check your internet connection an try again"))
         }catch (e: Exception){
@@ -53,15 +58,15 @@ class ArticlesRepository @Inject constructor(
         }
     }
 
-    suspend fun refreshArticles(){
+    suspend fun refreshArticles(country: String){
         withContext(Dispatchers.IO) {
-            val generalArticles = newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_GENERAL)
-            val sportsArticles = newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_SPORTS)
-            val techArticles = newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_TECH)
-            val healthArticles = newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_HEALTH)
-            val entertainmentArticles = newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_ENTERTAINMENT)
-            val scienceArticles = newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_SCIENCE)
-            val businessArticles = newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_BUSINESS)
+            val generalArticles = newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_GENERAL, country)
+            val sportsArticles = newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_SPORTS, country)
+            val techArticles = newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_TECH, country)
+            val healthArticles = newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_HEALTH, country)
+            val entertainmentArticles = newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_ENTERTAINMENT, country)
+            val scienceArticles = newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_SCIENCE, country)
+            val businessArticles = newsApi.getTopHeadlinesByCategory(Constants.ARTICLE_TYPE_BUSINESS, country)
 
             articlesDao.clearCache()
 

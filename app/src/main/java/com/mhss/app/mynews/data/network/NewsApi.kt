@@ -9,14 +9,14 @@ interface NewsApi {
     @GET("top-headlines")
     suspend fun getTopHeadlinesByCategory(
         @Query("category") category: String,
-        @Query("country") country: String = "us",
+        @Query("country") country: String,
         @Query("apiKey") apiKey: String = API_KEY
     ): ArticlesDto
 
-    @GET("top-headlines")
+    @GET("everything")
     suspend fun getArticles(
         @Query("q") query: String,
-        @Query("language") language: String = "en",
+        @Query("language") language: String,
         @Query("sortBy") sortBy: String = "relevancy",
         @Query("apiKey") apiKey: String = API_KEY
     ): ArticlesDto

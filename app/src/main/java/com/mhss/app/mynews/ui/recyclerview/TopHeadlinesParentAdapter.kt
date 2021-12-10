@@ -10,10 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mhss.app.mynews.databinding.TopHeadlinesParentItemBinding
 import com.mhss.app.mynews.ui.fragments.MainFragmentDirections
 
-class TopHeadlinesParentRecAdapter(
+class TopHeadlinesParentAdapter(
     private val owner: LifecycleOwner,
-) : ListAdapter<TopHeadlinesItem, TopHeadlinesParentRecAdapter.TopHeadlineViewHolder>(DiffCallback) {
+) : ListAdapter<TopHeadlinesItem, TopHeadlinesParentAdapter.TopHeadlineViewHolder>(DiffCallback) {
 
+    fun getItemByPosition(position: Int) = getItem(position)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopHeadlineViewHolder {
         return TopHeadlineViewHolder(
             TopHeadlinesParentItemBinding
@@ -31,7 +32,8 @@ class TopHeadlinesParentRecAdapter(
         fun bind(item: TopHeadlinesItem) {
             binding.apply {
                 categoryName.text = item.category
-                val adapter = CardArticleItemRecAdapter {article ->
+                icon.setImageResource(item.icon)
+                val adapter = CardArticleItemAdapter { article ->
                         root.findNavController().navigate(
                             MainFragmentDirections.mainFragmentToDetailsFragment(article)
                         )

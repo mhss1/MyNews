@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="460dp"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_container"
@@ -25,13 +25,10 @@
         <TextView
             android:id="@+id/article_title_tv"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:ellipsize="end"
-            android:maxLines="4"
+            android:layout_height="wrap_content"
             android:padding="16dp"
-            android:textColor="@color/text_color"
+            android:textColor="@color/colorOnBackground"
             android:textSize="22sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/article_img"
             tools:text="This is a test Title" />
 
@@ -43,7 +40,7 @@
             android:paddingEnd="20dp"
             android:paddingStart="4dp"
             android:paddingBottom="12dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@id/source_tv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/source_tv"
             tools:text="December 6, 2021" />
@@ -55,7 +52,7 @@
             android:paddingStart="20dp"
             android:paddingEnd="4dp"
             android:paddingBottom="12dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/article_title_tv"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="BBC News" />
 

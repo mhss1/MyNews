@@ -2,5 +2,5 @@
 <resources>
     <color name="nav_bar_color">#393838</color>
     <color name="red">#FF1100</color>
-    <color name="text_color">@color/white</color>
+    <color name="colorOnBackground">@color/white</color>
 </resources>

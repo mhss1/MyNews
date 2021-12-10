@@ -9,5 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="nav_bar_color">#FFFFFFFF</color>
     <color name="red">#FF1100</color>
-    <color name="text_color">@color/black</color>
+    <color name="colorOnBackground">@color/black</color>
 </resources>

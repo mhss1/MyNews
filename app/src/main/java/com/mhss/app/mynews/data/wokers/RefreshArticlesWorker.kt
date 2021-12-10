@@ -16,7 +16,7 @@ class RefreshArticlesWorker @AssistedInject constructor(
 ) : CoroutineWorker(context, workerParams) {
 
     override suspend fun doWork(): Result {
-        articlesRepository.refreshArticles()
+//        articlesRepository.refreshArticles()
         return Result.success()
     }
 
