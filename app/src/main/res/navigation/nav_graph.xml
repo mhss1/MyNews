@@ -34,11 +34,13 @@
 
         <action
             android:id="@+id/discoverFragment_to_searchFragment"
-            app:destination="@id/searchFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out" />
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/discoverFragment_to_articlesListFragment"
+            app:destination="@id/articlesListFragment" />
+        <action
+            android:id="@+id/discoverFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
 
     <fragment
@@ -58,6 +60,18 @@
         android:id="@+id/settingsFragment"
         android:name="com.mhss.app.mynews.ui.fragments.SettingsFragment"
         tools:layout="@layout/fragment_settings">
+    </fragment>
+    <fragment
+        android:id="@+id/articlesListFragment"
+        android:name="com.mhss.app.mynews.ui.fragments.ArticlesListFragment"
+        tools:layout="@layout/fragment_articles_list" >
+        <argument
+            android:name="category"
+            app:argType="string"
+            android:defaultValue='"Tech"' />
+        <action
+            android:id="@+id/articlesListFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
 
 </navigation>
