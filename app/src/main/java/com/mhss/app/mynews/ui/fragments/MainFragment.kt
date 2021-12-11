@@ -61,7 +61,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             binding.topHeadlinesParentTabLayout,
             binding.topHeadlinesParentViewPager)
         {tab, position ->
-            val item = adapter.getItemByPosition(position)
+            val item = getTopHeadlinesList()[position]
             tab.text = item.category
             tab.setIcon(item.icon)
         }.attach()

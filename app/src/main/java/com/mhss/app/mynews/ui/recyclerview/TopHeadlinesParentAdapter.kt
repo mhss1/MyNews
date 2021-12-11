@@ -1,6 +1,7 @@
 package com.mhss.app.mynews.ui.recyclerview
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.findNavController
@@ -14,7 +15,6 @@ class TopHeadlinesParentAdapter(
     private val owner: LifecycleOwner,
 ) : ListAdapter<TopHeadlinesItem, TopHeadlinesParentAdapter.TopHeadlineViewHolder>(DiffCallback) {
 
-    fun getItemByPosition(position: Int) = getItem(position)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopHeadlineViewHolder {
         return TopHeadlineViewHolder(
             TopHeadlinesParentItemBinding
@@ -41,6 +41,10 @@ class TopHeadlinesParentAdapter(
                 topHeadlinesRec.adapter = adapter
                 item.list.observe(owner) { list ->
                     adapter.submitList(list)
+                    if (list.isEmpty())
+                        noArticlesTv.visibility = View.VISIBLE
+                    else
+                        noArticlesTv.visibility = View.GONE
                 }
 
             }
