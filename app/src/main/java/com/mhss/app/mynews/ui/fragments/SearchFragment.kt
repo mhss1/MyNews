@@ -14,6 +14,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import kotlinx.coroutines.flow.map
 import androidx.lifecycle.asLiveData
 import com.mhss.app.mynews.databinding.FragmentSearchBinding
+import com.mhss.app.mynews.ui.MainActivity
 import com.mhss.app.mynews.ui.recyclerview.SimpleArticleItemAdapter
 import com.mhss.app.mynews.ui.veiwmodels.ArticlesViewModel
 import com.mhss.app.mynews.util.Constants
@@ -27,7 +28,6 @@ class SearchFragment : Fragment() {
 
     private val viewModel: ArticlesViewModel by viewModels()
 
-    private lateinit var language: String
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,10 +40,6 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        readSettings(Constants.LANGUAGE_SETTINGS).observe(viewLifecycleOwner){
-            language = it
-        }
-
         val adapter = SimpleArticleItemAdapter {
             findNavController().navigate(SearchFragmentDirections.searchFragmentToDetailsFragment(it))
         }
@@ -52,7 +48,7 @@ class SearchFragment : Fragment() {
         binding.articleSearchEdt.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 viewModel.setLastResult(null)
-                viewModel.searchArticles(binding.articleSearchEdt.text.toString(), language)
+                viewModel.searchArticles(binding.articleSearchEdt.text.toString(), MainActivity.language)
                 hideKeyboard()
                 binding.articleSearchEdt.clearFocus()
             }
@@ -110,10 +106,4 @@ class SearchFragment : Fragment() {
     private fun showProgressBar(show: Boolean) {
         binding.progressBar.visibility = if (show) View.VISIBLE else View.GONE
     }
-
-    fun readSettings(key : String) =
-        requireContext().dataStore.data
-            .map { preferences ->
-                preferences[stringPreferencesKey(key)] ?: ""
-            }.asLiveData()
 }

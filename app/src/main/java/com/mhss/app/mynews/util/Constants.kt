@@ -15,5 +15,7 @@ object Constants {
 
     const val DB_NAME = "articles_database"
 
+    const val  REFRESH_WORKER_NAME = "com.mhss.app.mynews.data.wokers.RefreshArticlesWorker"
+
     const val BASE_URL = "https://newsapi.org/v2/"
 }

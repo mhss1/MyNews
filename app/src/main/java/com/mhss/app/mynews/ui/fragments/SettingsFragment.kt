@@ -13,11 +13,10 @@ import kotlinx.coroutines.launch
 import com.mhss.app.mynews.R
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.core.edit
-import androidx.lifecycle.asLiveData
-import kotlinx.coroutines.flow.map
 import com.mhss.app.mynews.databinding.FragmentSettingsBinding
+import com.mhss.app.mynews.ui.MainActivity
+import com.mhss.app.mynews.ui.dataStore
 import com.mhss.app.mynews.util.Constants
-import com.mhss.app.mynews.util.countryToCode
 
 class SettingsFragment : Fragment(), OnItemSelectedListener {
 
@@ -53,17 +52,12 @@ class SettingsFragment : Fragment(), OnItemSelectedListener {
             binding.languagesSpinner.adapter = adapter
         }
 
-        readSettings(Constants.COUNTRY_SETTINGS).observe(viewLifecycleOwner){
-                binding.countrySpinner.setSelection(
-                    resources.getStringArray(R.array.countries_list).indexOf(it)
-                )
-        }
-
-        readSettings(Constants.LANGUAGE_SETTINGS).observe(viewLifecycleOwner){
-            binding.languagesSpinner.setSelection(
-                resources.getStringArray(R.array.languages_list).indexOf(it)
-            )
-        }
+        binding.countrySpinner.setSelection(
+            resources.getStringArray(R.array.countries_list).indexOf(MainActivity.country!!)
+        )
+        binding.languagesSpinner.setSelection(
+            resources.getStringArray(R.array.languages_list).indexOf(MainActivity.language)
+        )
 
         binding.countrySpinner.onItemSelectedListener = this
         binding.languagesSpinner.onItemSelectedListener = this
@@ -73,12 +67,14 @@ class SettingsFragment : Fragment(), OnItemSelectedListener {
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         when (parent?.id) {
             R.id.country_spinner -> editSettings(
-                    Constants.COUNTRY_SETTINGS,
-                    parent.getItemAtPosition(position).toString())
-            R.id.languages_spinner ->{
+                Constants.COUNTRY_SETTINGS,
+                parent.getItemAtPosition(position).toString()
+            )
+            R.id.languages_spinner -> {
                 editSettings(
                     Constants.LANGUAGE_SETTINGS,
-                    parent.getItemAtPosition(position).toString())
+                    parent.getItemAtPosition(position).toString()
+                )
             }
         }
     }
@@ -92,10 +88,4 @@ class SettingsFragment : Fragment(), OnItemSelectedListener {
             }
         }
     }
-
-    private fun readSettings(key: String) =
-        requireContext().dataStore.data
-            .map { preferences ->
-                preferences[stringPreferencesKey(key)] ?: ""
-            }.asLiveData()
 }
