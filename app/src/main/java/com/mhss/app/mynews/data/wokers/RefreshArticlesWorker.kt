@@ -22,7 +22,7 @@ class RefreshArticlesWorker @AssistedInject constructor(
 ) : CoroutineWorker(context, workerParams) {
 
     override suspend fun doWork(): Result {
-        val country = inputData.getString("country") ?: "us"
+        val country = inputData.getString("country") ?: "United States"
         try {
             articlesRepository.refreshArticles(country.countryToCode())
         }catch (e: Exception){

@@ -10,14 +10,10 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.datastore.preferences.core.stringPreferencesKey
-import kotlinx.coroutines.flow.map
-import androidx.lifecycle.asLiveData
+import androidx.preference.PreferenceManager
 import com.mhss.app.mynews.databinding.FragmentSearchBinding
-import com.mhss.app.mynews.ui.MainActivity
 import com.mhss.app.mynews.ui.recyclerview.SimpleArticleItemAdapter
 import com.mhss.app.mynews.ui.veiwmodels.ArticlesViewModel
-import com.mhss.app.mynews.util.Constants
 import com.mhss.app.mynews.util.DataState
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,6 +35,7 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val preferenceManager = PreferenceManager.getDefaultSharedPreferences(requireContext())
 
         val adapter = SimpleArticleItemAdapter {
             findNavController().navigate(SearchFragmentDirections.searchFragmentToDetailsFragment(it))
@@ -48,7 +45,9 @@ class SearchFragment : Fragment() {
         binding.articleSearchEdt.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 viewModel.setLastResult(null)
-                viewModel.searchArticles(binding.articleSearchEdt.text.toString(), MainActivity.language)
+                viewModel.searchArticles(
+                    binding.articleSearchEdt.text.toString(),
+                    preferenceManager.getString("language", "") ?: "")
                 hideKeyboard()
                 binding.articleSearchEdt.clearFocus()
             }

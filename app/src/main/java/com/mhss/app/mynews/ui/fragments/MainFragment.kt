@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.preference.PreferenceManager
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mhss.app.mynews.R
 import com.mhss.app.mynews.databinding.FragmentMainBinding
-import com.mhss.app.mynews.ui.MainActivity
 import com.mhss.app.mynews.ui.recyclerview.TopHeadlinesItem
 import com.mhss.app.mynews.ui.recyclerview.TopHeadlinesParentAdapter
 import com.mhss.app.mynews.ui.veiwmodels.ArticlesViewModel
@@ -37,6 +37,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val preferenceManager = PreferenceManager.getDefaultSharedPreferences(requireContext())
+
         setTodayDate()
         val adapter = TopHeadlinesParentAdapter(viewLifecycleOwner)
         adapter.submitList(getTopHeadlinesList())
@@ -52,7 +54,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         }.attach()
 
         binding.refreshLayout.setOnRefreshListener {
-            viewModel.refreshArticles(MainActivity.country!!)
+            viewModel.refreshArticles(preferenceManager.getString("country", "") ?: "")
         }
 
         viewModel.refreshState.observe(viewLifecycleOwner) { state ->

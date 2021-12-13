@@ -12,6 +12,7 @@ object Constants {
 
     const val COUNTRY_SETTINGS = "country"
     const val LANGUAGE_SETTINGS = "language"
+    const val THEME_SETTINGS = "theme"
 
     const val DB_NAME = "articles_database"
 

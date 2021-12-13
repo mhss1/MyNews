@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="Appearance">
+        <ListPreference
+            android:key="theme"
+            android:title="Theme"
+            android:defaultValue="Auto"
+            android:entries="@array/theme_options"
+            android:entryValues="@array/theme_options"
+            android:summary="Choose a theme for the app"
+            />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Preferences">
+        <ListPreference
+            android:key="country"
+            android:title="Top headlines country"
+            android:defaultValue="United States"
+            android:entries="@array/countries_list"
+            android:entryValues="@array/countries_list"
+            android:summary="Choose the country of the top headlines"
+            />
+
+        <ListPreference
+            android:key="language"
+            android:title="Article search results language"
+            android:defaultValue="English"
+            android:entries="@array/languages_list"
+            android:entryValues="@array/languages_list"
+            android:summary="Choose the language of articles when you search for articles in the Discover Page"
+            />
+    </PreferenceCategory>
+
+</PreferenceScreen>
