@@ -54,7 +54,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         }.attach()
 
         binding.refreshLayout.setOnRefreshListener {
-            viewModel.refreshArticles(preferenceManager.getString("country", "") ?: "")
+            viewModel.refreshArticles(preferenceManager.getString("country", "us") ?: "us")
         }
 
         viewModel.refreshState.observe(viewLifecycleOwner) { state ->

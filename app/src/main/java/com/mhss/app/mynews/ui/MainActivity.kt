@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() , SharedPreferences.OnSharedPreferenceC
     }
 
     private fun setupRefreshWork(policy: ExistingPeriodicWorkPolicy){
-            val inputData = workDataOf("country" to preferenceManager.getString("country", ""))
+            val inputData = workDataOf("country" to preferenceManager.getString("country", "us"))
             val constraints = Constraints.Builder()
                 .setRequiredNetworkType(NetworkType.CONNECTED)
                 .build()
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() , SharedPreferences.OnSharedPreferenceC
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         println("called and key is $key")
         if (key == "theme")
-           setTheme(sharedPreferences?.getString(key, ""))
+           setTheme(sharedPreferences?.getString(key, "Dark"))
         else if(key == "country")
             setupRefreshWork(ExistingPeriodicWorkPolicy.REPLACE)
     }

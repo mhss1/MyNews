@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.transition.MaterialContainerTransform
 import com.mhss.app.mynews.R
 import com.mhss.app.mynews.databinding.FragmentArticlesListBinding
 import com.mhss.app.mynews.ui.recyclerview.SimpleArticleItemAdapter
@@ -34,7 +34,8 @@ class ArticlesListFragment : Fragment(R.layout.fragment_articles_list) {
         super.onViewCreated(view, savedInstanceState)
 
         val adapter = SimpleArticleItemAdapter{
-            ArticlesListFragmentDirections.articlesListFragmentToDetailsFragment(it)
+            findNavController().navigate(
+                ArticlesListFragmentDirections.articlesListFragmentToDetailsFragment(it))
         }
         categoryToList(args.category).observe(viewLifecycleOwner){
             adapter.submitList(it)

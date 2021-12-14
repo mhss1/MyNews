@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">My News</string>
+    <string name="app_version">1.0.0</string>
 
     <string-array name="countries_list">
         <item>Canada</item>
@@ -11,6 +12,16 @@
         <item>United Kingdom</item>
         <item>United States</item>
     </string-array>
+    <string-array name="countries_list_values">
+        <item>ca</item>
+        <item>eg</item>
+        <item>fr</item>
+        <item>de</item>
+        <item>cn</item>
+        <item>ae</item>
+        <item>gb</item>
+        <item>us</item>
+    </string-array>
 
     <string-array name="languages_list">
         <item>English</item>
@@ -21,6 +32,16 @@
         <item>Italian</item>
         <item>Portuguese</item>
         <item>Chinese</item>
+    </string-array>
+    <string-array name="languages_list_values">
+        <item>en</item>
+        <item>ar</item>
+        <item>de</item>
+        <item>es</item>
+        <item>fr</item>
+        <item>it</item>
+        <item>pt</item>
+        <item>zh</item>
     </string-array>
 
     <string-array name="theme_options">

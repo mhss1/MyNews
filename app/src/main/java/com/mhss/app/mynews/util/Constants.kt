@@ -10,10 +10,6 @@ object Constants {
     const val ARTICLE_TYPE_BUSINESS = "business"
     const val ARTICLE_TYPE_SCIENCE = "science"
 
-    const val COUNTRY_SETTINGS = "country"
-    const val LANGUAGE_SETTINGS = "language"
-    const val THEME_SETTINGS = "theme"
-
     const val DB_NAME = "articles_database"
 
     const val  REFRESH_WORKER_NAME = "com.mhss.app.mynews.data.wokers.RefreshArticlesWorker"

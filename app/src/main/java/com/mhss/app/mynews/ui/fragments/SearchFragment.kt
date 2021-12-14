@@ -47,7 +47,7 @@ class SearchFragment : Fragment() {
                 viewModel.setLastResult(null)
                 viewModel.searchArticles(
                     binding.articleSearchEdt.text.toString(),
-                    preferenceManager.getString("language", "") ?: "")
+                    preferenceManager.getString("language", "en") ?: "en")
                 hideKeyboard()
                 binding.articleSearchEdt.clearFocus()
             }

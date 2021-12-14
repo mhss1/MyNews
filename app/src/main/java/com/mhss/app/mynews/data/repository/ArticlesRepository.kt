@@ -4,10 +4,8 @@ import androidx.lifecycle.Transformations
 import com.mhss.app.mynews.data.database.ArticlesDao
 import com.mhss.app.mynews.data.database.toArticles
 import com.mhss.app.mynews.data.network.NewsApi
-import com.mhss.app.mynews.domain.Article
 import com.mhss.app.mynews.util.Constants
 import com.mhss.app.mynews.util.DataState
-import com.mhss.app.mynews.util.countryToCode
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.flow.flow

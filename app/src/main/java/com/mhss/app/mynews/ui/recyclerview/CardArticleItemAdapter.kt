@@ -37,12 +37,9 @@ class CardArticleItemAdapter(
         fun bind(article: Article) {
             binding.apply {
 
-                cardContainer.transitionName = article.url
-                articleTitleTv.transitionName = article.title
+                articleImg.visibility = View.VISIBLE
                 cardContainer.setOnClickListener { onItemClicked(article) }
-                if (article.imageUrl.isBlank())
-                    articleImg.visibility = View.GONE
-                else Glide
+                Glide
                     .with(binding.root.context)
                     .load(article.imageUrl)
                     .placeholder(R.drawable.img_placeholder_ic)

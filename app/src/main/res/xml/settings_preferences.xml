@@ -10,6 +10,7 @@
             android:entries="@array/theme_options"
             android:entryValues="@array/theme_options"
             android:summary="Choose a theme for the app"
+            android:icon="@drawable/theme_ic"
             />
 
     </PreferenceCategory>
@@ -19,20 +20,51 @@
         <ListPreference
             android:key="country"
             android:title="Top headlines country"
-            android:defaultValue="United States"
             android:entries="@array/countries_list"
-            android:entryValues="@array/countries_list"
+            android:entryValues="@array/countries_list_values"
+            android:defaultValue="us"
             android:summary="Choose the country of the top headlines"
+            android:icon="@drawable/flag_ic"
             />
 
         <ListPreference
             android:key="language"
             android:title="Article search results language"
-            android:defaultValue="English"
             android:entries="@array/languages_list"
-            android:entryValues="@array/languages_list"
+            android:entryValues="@array/languages_list_values"
+            android:defaultValue="en"
             android:summary="Choose the language of articles when you search for articles in the Discover Page"
+            android:icon="@drawable/language_ic"
             />
     </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="About"
+        >
+
+        <Preference
+            android:key="version"
+            android:title="App version"
+            android:summary="@string/app_version"
+            android:icon="@drawable/code_ic"
+            />
+        <Preference
+            android:key="developer"
+            android:title="App developer"
+            android:summary="Mohamed Hassan"
+            android:icon="@drawable/person_ic"
+            />
+        <Preference
+            android:key="rate"
+            android:title="Rate App"
+            android:icon="@drawable/start_ic"
+            >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://play.google.com/store/apps/details?id=com.mhss.app.mynews" />
+        </Preference>
+
+    </PreferenceCategory>
+
 
 </PreferenceScreen>

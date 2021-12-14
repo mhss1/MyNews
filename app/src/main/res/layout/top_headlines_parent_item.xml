@@ -32,9 +32,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/top_headlines_rec"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@id/category_name"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/top_headlines_card_list_item"
         />
 

@@ -6,8 +6,6 @@ import kotlinx.coroutines.withContext
 import com.mhss.app.mynews.data.repository.ArticlesRepository
 import com.mhss.app.mynews.domain.Article
 import com.mhss.app.mynews.util.DataState
-import com.mhss.app.mynews.util.countryToCode
-import com.mhss.app.mynews.util.languageToCode
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.io.IOException
 import javax.inject.Inject
@@ -33,8 +31,7 @@ class ArticlesViewModel @Inject constructor(
     val scienceArticles = articlesRepository.scienceArticles
 
     fun articlesByQuery() = _currentQuery.switchMap {
-        println("lang is : ${it.second}")
-        articlesRepository.getArticles(it.first, it.second.languageToCode()).asLiveData()
+        articlesRepository.getArticles(it.first, it.second).asLiveData()
     }
 
     private val _lastResult: MutableLiveData<List<Article>?> = MutableLiveData(null)
@@ -44,7 +41,7 @@ class ArticlesViewModel @Inject constructor(
     fun refreshArticles(country: String) = viewModelScope.launch {
         try {
             _refreshState.value = DataState.Loading
-            articlesRepository.refreshArticles(country.countryToCode())
+            articlesRepository.refreshArticles(country)
             _refreshState.value = DataState.Success(null)
         }catch (io: IOException){
             _refreshState.value = DataState.Error("Couldn't refresh. Check your internet connection an try again")
