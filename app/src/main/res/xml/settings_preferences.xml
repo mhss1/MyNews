@@ -51,7 +51,7 @@
         <Preference
             android:key="developer"
             android:title="App developer"
-            android:summary="Mohamed Hassan"
+            android:summary="@string/app_developer"
             android:icon="@drawable/person_ic"
             />
         <Preference

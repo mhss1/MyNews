@@ -1,15 +1,11 @@
 package com.mhss.app.mynews.ui.recyclerview
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.mhss.app.mynews.R
 import com.mhss.app.mynews.databinding.DiscoverCategoriesItemBinding
 
 class DiscoverCategoriesAdapter(

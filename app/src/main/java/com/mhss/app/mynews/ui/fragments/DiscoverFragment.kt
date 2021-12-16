@@ -6,10 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.mhss.app.mynews.R
 import com.mhss.app.mynews.databinding.FragmentDiscoverBinding
 import com.mhss.app.mynews.ui.recyclerview.DiscoverCategoriesAdapter

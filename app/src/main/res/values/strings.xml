@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">My News</string>
     <string name="app_version">1.0.0</string>
+    <string name="app_developer">Mohamed Hassan</string>
 
     <string-array name="countries_list">
         <item>Canada</item>

@@ -66,8 +66,7 @@
 
         <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.mhss.app.mynews.ui.fragments.SettingsFragment"
-        tools:layout="@layout/fragment_settings">
+        android:name="com.mhss.app.mynews.ui.fragments.SettingsFragment">
     </fragment>
     <fragment
         android:id="@+id/articlesListFragment"
