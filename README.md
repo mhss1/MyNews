@@ -7,7 +7,7 @@ An application where you can Browse top headlines and Discover new articles in d
 - Browse Top headlines in different categories amd countries
 - Explore new articles
 - Search Articles in different languages
-- Choose yoyr App theme to Dark or Light Theme
+- Choose your App theme to Dark or Light Theme
 
 
 
