@@ -15,6 +15,7 @@ An application where you can Browse top headlines and Discover new articles in d
 - [Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
 - [Room](https://developer.android.com/training/data-storage/room)
 - [Retrofit](https://square.github.io/retrofit)
+- [WorkManager](https://developer.android.com/topic/libraries/architecture/workmanager)
 - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
 - [Flow](https://developer.android.com/kotlin/flow)
 - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
