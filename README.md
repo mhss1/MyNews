@@ -1,7 +1,7 @@
 # My News
 An application where you can Browse top headlines and Discover new articles in different categories, countries and languages.
 
-![Alt text](/screenshots.jpg?raw=true)
+![screenshots](https://user-images.githubusercontent.com/58703865/147923338-47304b40-6f67-4bd6-83f3-8e770bf67eb6.jpg)
 
 ## Features:
 - Browse Top headlines in different categories amd countries
