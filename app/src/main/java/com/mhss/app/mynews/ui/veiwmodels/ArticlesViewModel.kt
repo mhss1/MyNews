@@ -40,7 +40,6 @@ class ArticlesViewModel @Inject constructor(
         get() = _lastResult
 
     fun refreshArticles(country: String) = viewModelScope.launch {
-        withContext(Dispatchers.IO) {
             try {
                 _refreshState.value = DataState.Loading
                 articlesRepository.refreshArticles(country)
@@ -52,7 +51,6 @@ class ArticlesViewModel @Inject constructor(
                 _refreshState.value =
                     DataState.Error("Couldn't refresh. Unexpected Error has happened.")
             }
-        }
     }
 
     fun searchArticles(query: String, language: String) {
