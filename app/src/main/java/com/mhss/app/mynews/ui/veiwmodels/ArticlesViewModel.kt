@@ -2,12 +2,10 @@ package com.mhss.app.mynews.ui.veiwmodels
 
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import com.mhss.app.mynews.data.repository.ArticlesRepository
 import com.mhss.app.mynews.domain.Article
 import com.mhss.app.mynews.util.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import java.io.IOException
 import javax.inject.Inject
 
